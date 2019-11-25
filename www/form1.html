@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        用户名：<input name="username" type="text" value="" id="username"/><br/>
+        密码：<input name="password" type="password" value="" id="password"/><br/>
+        <button id="login">登录</button> <button id="register">注册</button>
+        <script src="text/javascript">
+        let oUsername = document.getElementById('username');
+        let oPassword = document.getElementById('oPassword');
+        let login = document.getElementById('login');
+        let register = document.getElementById('register');
+
+        login.onclick = function(){
+            ajax({
+                url:'/user',
+                type:'get',
+                data:{act:'register',username:oUsername.value,password:opassword.value},
+                success:function(data){
+                  let json = eval('('+ data +')')
+                  if(json.ok){
+                      alert('注册成功'+json.msg)
+                  }else(
+                      alert('注册失败'+json.msg)
+                  )
+                },error:function(){
+                   console.log(err)
+                }
+            })
+        }
+        </script>
+    </body>
+</html>

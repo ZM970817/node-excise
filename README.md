@@ -13,3 +13,4 @@ a note of learning nodejs
 9.学习了nodejs中的express框架,学习了express-static中间件的使用,实际上就是一个函数,在读取静态资源文件的时候调用这个函数就好,函数中有一个参数,代表要访问的静态资源文件路径
 10.学习了nodejs的body-parser中间件,使用的时候首先要引用body-parser 和 express-static的使用方法一样  直接在express().use中使用就可以了  用body-parser解析post数据使用其中的urlencoded()即可,经过这一部处理之后   后面的req中才会有req.body这个参数   否则是没有的   必须经过body-parder中的urlencoded解析
 11.express()的use中有两个参数   第一个参数也可以不带  第一个是处理的地址   第二个是回调函数,回调函数中也有三个参数,第一个是req,第二个是res,第三个是next   在流试操作中第三个参数是必须的   并且处理的路径要是相同的才会形成正常的流试操作
+12.学会自己使用写中间件,写中间件都是用原生的一些方法去做.module.exports抛出去的是什么东西   引进来的就是什么东西   对象就是对象函数就是函数,想要做成XXX.XXX()这样子的东西,就自己一层层封装加功能

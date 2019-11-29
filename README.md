@@ -14,3 +14,8 @@ a note of learning nodejs
 10.学习了nodejs的body-parser中间件,使用的时候首先要引用body-parser 和 express-static的使用方法一样  直接在express().use中使用就可以了  用body-parser解析post数据使用其中的urlencoded()即可,经过这一部处理之后   后面的req中才会有req.body这个参数   否则是没有的   必须经过body-parder中的urlencoded解析
 11.express()的use中有两个参数   第一个参数也可以不带  第一个是处理的地址   第二个是回调函数,回调函数中也有三个参数,第一个是req,第二个是res,第三个是next   在流试操作中第三个参数是必须的   并且处理的路径要是相同的才会形成正常的流试操作
 12.学会自己使用写中间件,写中间件都是用原生的一些方法去做.module.exports抛出去的是什么东西   引进来的就是什么东西   对象就是对象函数就是函数,想要做成XXX.XXX()这样子的东西,就自己一层层封装加功能
+13.cookie和session:cookie空间小,安全性差,数据都是明文展示的,但是可以对需要的数据做签名处理 这样即使数据改过也知道  而session是保存在服务器端的,它的安全性比cookie要高,并且运用的空间大,但是它是基于cookie存在的,并不能单独使用.并且还存在session劫持的风险.  在运用cookie的时候主要是有关于它的读取,发送,删除
+  1.cookie的读取,读取主要是在req上面,并且要运用到cookie-parser这个中间件,如果这个cookie是签过名的cookie,那么在读取的时候,要在cookie-parser这个函数中加上签过名的字符串,并且获取的时候,要分情况获取,获取米有签过名的cookie时要用req.cookies,但是获取签过名的cookie时要用req.signedCookies
+  2.cookie的发送,直接在访问路径下面加上res.cookie就可以向前端发送cookie,在这个函数中有三个参数,第一个是cookie的名字,第二个是cookie的值,第三个是一个json,json中有path/signed/maxAge等参数,其中path是cookie要发送的路径,signed是选择签名与否,maxAge是选择最大过期时间
+  3.cookie的删除,res.clearCookie('要删除的cookie的名称')
+session的使用要用到cookie-session这个中间件,在cookie-session中存放一个json,json中必须有keys这个参数为session进行加密,还有name就是session的名字,还有maxAge等参数

@@ -19,3 +19,7 @@ a note of learning nodejs
   2.cookie的发送,直接在访问路径下面加上res.cookie就可以向前端发送cookie,在这个函数中有三个参数,第一个是cookie的名字,第二个是cookie的值,第三个是一个json,json中有path/signed/maxAge等参数,其中path是cookie要发送的路径,signed是选择签名与否,maxAge是选择最大过期时间
   3.cookie的删除,res.clearCookie('要删除的cookie的名称')
 session的使用要用到cookie-session这个中间件,在cookie-session中存放一个json,json中必须有keys这个参数为session进行加密,还有name就是session的名字,还有maxAge等参数
+14.jade和ejs模板引擎  
+   jade:一种侵入式的模板引擎,脱离了jade模板引擎就不能使用 用缩进来表示层级  属性用括号写在后面  标签中的值只需要空一格就可以显示  属性还有另外一种写法 就是div&attributes({属性:值,属性,值})  除此之外还有两个特殊的东西就是class 和 style  这两个可以直接使用属性的方法去处理,就是div(style="height:200px,width:200px")这样  还可以用对象的方法  div(style={属性:值,属性:值})  而class与style不同的是  style可以看成是一个对象,因为其本身的格式就是像对象一样,而class则可以看成一个数组,class的写法 也有两种  一种就是按照属性的方式div(class="aaa bbb ccc")另外一种就是按照数组的形式 div(class=['aaa','bbb','ccc'])  jade的渲染方式:首先  cnpm install jade  把jade引入到要使用的模块中  jade中有一个render方法  方法中存放要渲染的字符串  就如  jade.render('要渲染的字符串'),使用这种方式的话,可以首先可以用fs模块中的readFile方法将写好的jade文件读出来  再扔到render方法中 方法中有两个参数 第一个是要渲染的字符串   第二个是一个json  常用的有调试用到的pretty:true  就可以美化渲染出来的jade文件   除此之外 jade中有一个专门渲染jade文件的方法  叫做renderFile()  这个方法中可以存放2个参数 第一个是要渲染的文件路径  第二个是一个json  和render()方法一样  json中还可以存放一些jade文件中的变量
+   总之,jade的render和renderFile方法  与fs中的readFile和writeFile配合使用  就可以完成 jade->渲染->html文件->显示这一过程
+   ejs:ejs和jade有点不同 它是一种很温和的模板引擎  离开了ejs这个模板还是可以将就继续使用   使用ejs的方法和jade一样,首先要cnpm instlal ejs  引入到要使用的文件中,ejs中也有一个renderFile方法  只不过其中含有三个参数
